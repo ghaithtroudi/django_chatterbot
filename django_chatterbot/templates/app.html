@@ -62,20 +62,20 @@
       var $rowTemplate = $('<li class="list-group-item"></li>');
 
       function submitInput() {
-        var requestData = {
-          'input': $input.val()
+        var inputData = {
+          'text': $input.val()
         }
 
         var $submit = $.ajax({
           type: "POST",
           url: chatterbotUrl,
-          data: requestData,
+          data: inputData,
         });
 
-        $submit.done(function(data) {
+        $submit.done(function(statement) {
             var $row = $rowTemplate.clone();
 
-            $row.text(data);
+            $row.text(statement.text);
             $chatlog.append($row);
 
             $input.val('');

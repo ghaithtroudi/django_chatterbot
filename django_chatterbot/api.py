@@ -4,12 +4,10 @@ from rest_framework import status
 from chatterbot import ChatBot
 
 
-chatterbot = ChatBot('Example ChatterBot')
-
-chatterbot.train([
-    "Hi",
-    "How are you?"
-])
+chatterbot = ChatBot(
+    'Example ChatterBot',
+    io_adapter="chatterbot.adapters.io.JsonAdapter"
+)
 
 
 class ChatterBotView(views.APIView):
@@ -22,7 +20,7 @@ class ChatterBotView(views.APIView):
         return Response(data, status=status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
-        input_statement = request.data.get('input', '')
+        input_statement = request.data.get('text')
 
         response_data = chatterbot.get_response(input_statement)
 
