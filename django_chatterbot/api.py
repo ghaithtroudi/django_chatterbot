@@ -9,6 +9,16 @@ chatterbot = ChatBot(
     io_adapter="chatterbot.adapters.io.JsonAdapter"
 )
 
+chatterbot.train([
+    "Hi",
+    "Hello",
+    "How are you?",
+    "I am good.",
+    "That is good to hear.",
+    "Thank you",
+    "You are welcome.",
+])
+
 
 class ChatterBotView(views.APIView):
     permission_classes = []
