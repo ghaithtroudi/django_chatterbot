@@ -61,7 +61,7 @@
 
       var $rowTemplate = $('<li class="list-group-item"></li>');
 
-      $sayButton.click(function() {
+      function submitInput() {
         var requestData = {
           'input': $input.val()
         }
@@ -84,6 +84,17 @@
         $submit.fail(function() {
           // TODO: Handle errors
         });
+      }
+
+      $sayButton.click(function() {
+        submitInput();
+      });
+
+      $input.keydown(function(event) {
+        // Submit the input when the enter button is pressed
+        if (event.keyCode == 13) {
+          submitInput();
+        }
       });
     </script>
   </body>
